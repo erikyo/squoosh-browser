@@ -1,9 +1,11 @@
 import Compress from '@yireen/squoosh-browser'
 import Setting from '@yireen/squoosh-browser'
 
-const file = document.getElementById('file');
-file.onchange = async (event) => {
-  const image = event.target.files[0];
+// Create Squoosh Browser object into window
+window.squooshBrowser = {};
+
+// Encode to Avif
+squooshBrowser.encoder = async function (image) {
   console.log('start');
   console.log('time', new Date());
   console.log( Setting );
@@ -51,14 +53,33 @@ file.onchange = async (event) => {
   console.log('end');
   console.log('time', new Date());
   console.log('size', compressFile.size);
+  return compressFile;
+}
+
+// utility to download base64 data
+squooshBrowser.downloadBase64Data = function (base64Data, fileName) {
+  const downloadLink = document.createElement("a");
+  downloadLink.href = base64Data;
+  downloadLink.download = fileName;
+  downloadLink.click();
+  downloadLink.remove();
+}
+
+// input type onChange trigger conversion
+const file = document.getElementById('file');
+file.onchange = async (event) => {
+  const image = event.target.files[0];
+  const respImage = await squooshBrowser.encoder(image);
+
   const reader = new FileReader()
   reader.onload = () => {
     const img = new Image()
     img.src = reader.result
     img.style = 'width:30%;'
     document.body.appendChild(img)  // reader.result为获取结果
+
+    squooshBrowser.downloadBase64Data(reader.result, respImage.name)
   }
-  reader.readAsDataURL(compressFile)
 
-
+  await reader.readAsDataURL(respImage)
 }

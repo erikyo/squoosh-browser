@@ -12,7 +12,7 @@
  */
 import type { AVIFModule } from '../../../../../codecs/avif/enc/avif_enc.js';
 import type { EncodeOptions } from '../shared/meta';
-import { initEmscriptenModule } from '../../../../features/worker-utils';
+import { initEmscriptenModule } from '../../../worker-utils';
 import { threads } from 'wasm-feature-detect';
 
 import avifEncoderMt from '../../../../../codecs/avif/enc/avif_enc_mt.js';

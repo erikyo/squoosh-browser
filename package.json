@@ -15,10 +15,8 @@
     "build": "tsc",
     "prepublishOnly": "rm -rf dist & yarn run build"
   },
-  "dependencies": {
-    "wasm-feature-detect": "1.2.11"
-  },
   "devDependencies": {
+    "wasm-feature-detect": "1.2.11",
     "@types/node": "16.7.2",
     "@typescript-eslint/eslint-plugin": "4.29.3",
     "@typescript-eslint/parser": "4.29.3",

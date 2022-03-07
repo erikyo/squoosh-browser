@@ -21,7 +21,7 @@ yarn add file-loader --dev
 # config
 For webpack5
 ```js
-// webpack.config.js
+// webpack.common.js
 module: {
   rules: [
     {
@@ -34,7 +34,7 @@ module: {
 
 For webpack4
 ```js
-// webpack.config.js
+// webpack.common.js
 module: {
   rules: [
     {
